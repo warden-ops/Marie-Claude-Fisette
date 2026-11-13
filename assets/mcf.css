@@ -44,7 +44,7 @@ body.lightmode {
   color: var(--mcf-ink);
 }
 
-html { scroll-padding-top: 24px; }
+html { scroll-padding-top: 120px; }
 
 /* Light, warm surfaces where the template uses a near-black field. */
 body.lightmode .keep-dark,
@@ -80,27 +80,63 @@ body.lightmode .keep-dark,
   letter-spacing: -0.02em;
 }
 
+.section-banner {
+  padding: 0 !important;
+  margin: 0;
+  background: transparent;
+}
+
+.section-banner:has(.rm-hero) {
+  background: #140c10;
+}
+
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: auto !important;
+  background: transparent;
+  padding: 16px 20px 0;
+  pointer-events: none;
+}
+
+.navbar {
+  pointer-events: auto;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(20, 8, 16, .18);
+}
+
+/* Inner pages keep their titles clear of the floating pill. The home photo starts at the top. */
+main:not(:has(.rm-hero)) {
+  padding-top: 128px;
+}
+
 .rm-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(260px, .9fr);
-  align-items: stretch;
-  gap: 28px;
-  background: var(--mcf-paper);
+  display: block;
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: 0 !important;
+  margin: 0;
+  overflow: hidden;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #140c10;
   background-image: none;
-  min-height: 0;
-  padding: 28px;
-  border-color: var(--mcf-line);
+  color: #fff;
 }
 
 .mcf-hero-photo {
   margin: 0;
-  order: 2;
-  position: relative;
-  min-height: 680px;
-  height: 100%;
-  border-radius: 18px;
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  height: auto;
+  border-radius: 0;
   overflow: hidden;
-  background: transparent;
+  background: #140c10;
 }
 
 .mcf-hero-photo img {
@@ -110,27 +146,47 @@ body.lightmode .keep-dark,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 16%;
+  object-position: 68% 42%;
 }
 
-.rm-hero-shade { display: none; }
+/* Header and hero copy are visible on first paint. A fade must not leave a blank cream band. */
+.navbar,
+.navbar-wrapper,
+.rm-hero,
+.rm-hero .animate__animated,
+.rm-hero .sub-heading,
+.rm-hero .rm-hero-title,
+.rm-hero .banner-content,
+.rm-hero .banner-video-content,
+.rm-hero .banner-heading {
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.rm-hero-shade {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(12, 6, 10, .88) 0%, rgba(12, 6, 10, .72) 34%, rgba(12, 6, 10, .38) 58%, rgba(12, 6, 10, .18) 100%),
+    linear-gradient(180deg, rgba(12, 6, 10, .28) 0%, rgba(12, 6, 10, 0) 22%, rgba(12, 6, 10, .35) 100%);
+}
 
 .rm-hero .hero-container {
   position: relative;
-  z-index: 1;
-  width: auto;
-  max-width: none;
-  margin: 0;
+  z-index: 2;
+  width: min(1180px, 100%);
+  max-width: 1180px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 148px 56px 72px;
   display: flex;
   align-items: center;
-}
-
-.rm-hero .hero-container {
-  position: relative;
-  z-index: 1;
-  width: min(640px, 100%);
-  margin-left: 0;
-  margin-right: auto;
+  justify-content: flex-start;
 }
 
 .rm-hero .banner-heading {
@@ -165,7 +221,35 @@ body.lightmode .keep-dark,
 
 .rm-hero .banner-content p,
 .rm-hero .rm-lede {
-  color: var(--mcf-ink);
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.rm-hero .rm-hero-title,
+.rm-hero .title-heading-banner,
+.rm-hero .rm-hero-title strong,
+.rm-hero .rm-dot {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.rm-hero .sub-heading,
+.rm-hero .sub-heading span,
+.rm-hero .rm-aside-label,
+.rm-hero .rm-text-link {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.rm-hero .rm-text-link {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.rm-hero .banner-content .d-flex {
+  justify-content: flex-start !important;
+  align-items: center !important;
+  align-self: flex-start !important;
 }
 
 .rm-aside-label {
@@ -178,6 +262,13 @@ body.lightmode .keep-dark,
   background: var(--mcf-card);
   border-color: var(--mcf-line);
   backdrop-filter: none;
+}
+
+.rm-hero .rm-surfaces li {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .55);
 }
 
 .rm-page-hero,
@@ -277,16 +368,70 @@ body.lightmode .keep-dark,
 
 .rm-logo { aspect-ratio: 1033 / 164; }
 
+.navbar .navbar-container {
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0;
+}
+
 .navbar .logo-container {
   flex: 0 0 auto !important;
   min-width: max-content;
-  margin-right: 8px !important;
+  margin-right: 0 !important;
 }
 
 .navbar .navbar-collapse {
   flex: 1 1 auto;
   min-width: 0;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-left: 40px !important;
+}
+
+.navbar .navbar-nav {
+  flex-wrap: nowrap;
+  gap: 0 2px;
+  margin-left: 0 !important;
+}
+
+.navbar .nav-link,
+.navbar .rm-nav-btn {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  white-space: nowrap;
+}
+
+.navbar .navbar-action-container {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  margin-left: 16px;
+}
+
+/* Below 1280 the wordmark, a 40px gap, the links and the phone cannot share one row. */
+@media (max-width: 1279px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: none !important;
+  }
+  .navbar .logo-container {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+    margin-right: 0 !important;
+  }
+  .navbar .nav-btn.rm-menu {
+    display: inline-flex !important;
+    margin-left: auto !important;
+    flex: 0 0 auto !important;
+  }
+  .navbar .navbar-action-container {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1399px) {
+  .navbar .nav-link,
+  .navbar .rm-nav-btn {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
 }
 
 .navbar .rm-logo {
@@ -390,7 +535,9 @@ html.mcf-reduce .rm-editorial {
     grid-column: auto;
     grid-row: auto;
   }
-  .rm-hero { min-height: 0; padding: 40px 20px 36px; }
+  .rm-hero,
+  .rm-hero .hero-container { min-height: 100vh; }
+  .rm-hero .hero-container { padding: 136px 32px 56px; }
   .rm-hero .banner-content,
   .rm-hero-aside,
   .banner-video-content { width: 100%; }
@@ -404,25 +551,45 @@ html.mcf-reduce .rm-editorial {
     flex: none;
     aspect-ratio: 3 / 2;
   }
-  .navbar-wrapper { padding: 8px 6px; }
+  .navbar-wrapper { padding: 10px 10px 0; background: transparent; }
+  main:not(:has(.rm-hero)) { padding-top: 96px; }
   .navbar { padding: 6px 8px; }
   .navbar .navbar-container { gap: 8px !important; }
   .navbar .logo-container {
     flex: 1 1 auto !important;
-    min-width: 0;
+    min-width: 0 !important;
+    max-width: calc(100% - 140px) !important;
     margin-right: 0 !important;
   }
   .rm-nav-num { display: none; }
-  .navbar .nav-btn.rm-menu--b { padding: 0 10px; }
+  .navbar .nav-btn.rm-menu--b {
+    padding: 0 10px;
+    margin-left: 40px !important;
+    flex: 0 0 auto !important;
+  }
   .navbar .rm-logo {
     height: auto !important;
-    width: calc(100vw - 118px) !important;
-    max-width: calc(100vw - 118px) !important;
-    max-height: none;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 52px;
   }
-  .rm-hero { grid-template-columns: 1fr; padding: 16px; }
-  .mcf-hero-photo { order: -1; min-height: 560px; height: 560px; }
-  .mcf-hero-photo img { object-position: center top; }
+  .rm-hero,
+  .rm-hero .hero-container {
+    min-height: 100svh;
+    height: auto;
+  }
+  .rm-hero .hero-container {
+    align-items: flex-end;
+    padding: 108px 20px 28px;
+  }
+  .mcf-hero-photo img { object-position: 58% 38%; }
+  .rm-hero-shade {
+    background:
+      linear-gradient(180deg, rgba(12, 6, 10, .18) 0%, rgba(12, 6, 10, .28) 38%, rgba(12, 6, 10, .82) 68%, rgba(12, 6, 10, .92) 100%);
+  }
+  .rm-hero-title,
+  .rm-page-title { font-size: clamp(34px, 9.2vw, 44px); }
+  .rm-hero .banner-content p { font-size: 16px; line-height: 1.45; }
   .expertise-img,
   .expertise-img img { height: 580px; }
   .rm-why-visual { height: 280px; }
@@ -817,9 +984,10 @@ body.lightmode :where(
   padding: 0;
 }
 
-.rm-hero .sub-heading span {
-  color: var(--mcf-accent) !important;
-  -webkit-text-fill-color: var(--mcf-accent) !important;
+.rm-hero .sub-heading span,
+.rm-hero .sub-heading i {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
 }
 
 a.btn-accent,
@@ -970,7 +1138,8 @@ button.btn-accent {
 .rm-split-head img.mcf-pos-cles { object-position: 46% 30%; }
 
 .bento-visual img.mcf-pos-famille,
-.mcf-stock-pair img.mcf-pos-famille { object-position: center 40%; }
+.mcf-stock-pair img.mcf-pos-famille,
+.rm-why-visual img.mcf-pos-famille { object-position: center 40%; }
 
 .rm-why-visual img.mcf-pos-maison,
 .mcf-stock-pair img.mcf-pos-maison { object-position: center 46%; }
