@@ -350,6 +350,17 @@ html.mcf-reduce .rm-editorial {
   min-height: 0;
 }
 
+/* Card photos paint immediately. A scroll reveal must not leave the frame empty. */
+.mcf-bento,
+.mcf-bento .bento-tile,
+.mcf-bento .bento-visual,
+.mcf-bento .bento-visual img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: none !important;
+  transform: none !important;
+}
+
 .bento-visual { position: relative; }
 .bento-visual .mcf-fill,
 .rm-why-visual .mcf-fill {
