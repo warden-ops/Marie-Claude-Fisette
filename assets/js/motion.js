@@ -50,7 +50,7 @@
           var vh = window.innerHeight || 1;
           var p = (rect.top + rect.height / 2 - vh / 2) / (vh / 2 + rect.height / 2);
           p = Math.max(-1, Math.min(1, p));
-          img.style.transform = "translate3d(0, " + (p * 28).toFixed(1) + "px, 0) scale(1.12)";
+          img.style.transform = "translate3d(0, " + (p * 12).toFixed(1) + "px, 0) scale(1.03)";
         });
       }
       function onScroll() {

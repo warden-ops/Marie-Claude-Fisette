@@ -95,17 +95,22 @@ body.lightmode .keep-dark,
 .mcf-hero-photo {
   margin: 0;
   order: 2;
+  position: relative;
+  min-height: 680px;
+  height: 100%;
   border-radius: 18px;
   overflow: hidden;
-  background: var(--mcf-line);
+  background: transparent;
 }
 
 .mcf-hero-photo img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: 620px;
+  height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 16%;
 }
 
 .rm-hero-shade { display: none; }
@@ -210,8 +215,7 @@ body.lightmode .keep-dark,
 .guide-content h2,
 .guide-content p,
 .guide-content .sub-heading span,
-.section-guide.keep-dark,
-.section-guide.keep-dark p {
+.guide-content a {
   color: var(--mcf-on-deep) !important;
   -webkit-text-fill-color: var(--mcf-on-deep) !important;
 }
@@ -322,8 +326,9 @@ html.mcf-reduce .rm-editorial {
   object-fit: cover;
   display: block;
 }
-.rm-why-visual .mcf-fill { object-position: center 18%; }
-.bento-visual .mcf-fill { object-position: center 30%; }
+.rm-why-visual { height: 340px; }
+.rm-why-visual .mcf-fill { object-position: center 8%; }
+.bento-visual .mcf-fill { object-position: center 50%; }
 
 .mcf-bento .bento-copy h3 { color: var(--mcf-ink); }
 .mcf-bento .bento-copy p { color: var(--mcf-muted); }
@@ -352,8 +357,11 @@ html.mcf-reduce .rm-editorial {
   .rm-nav-num { display: none; }
   .navbar .rm-logo { max-width: 42vw; height: 34px; }
   .rm-hero { grid-template-columns: 1fr; padding: 16px; }
-  .mcf-hero-photo { order: -1; }
-  .mcf-hero-photo img { height: 460px; }
+  .mcf-hero-photo { order: -1; min-height: 560px; height: 560px; }
+  .mcf-hero-photo img { object-position: center top; }
+  .expertise-img,
+  .expertise-img img { height: 580px; }
+  .rm-why-visual { height: 280px; }
 }
 
 @media (min-width: 1200px) {
@@ -527,13 +535,52 @@ summary:focus-visible {
   .mcf-network-logos img.mcf-logo-gfs { height: 58px; }
 }
 
+.expertise-img {
+  height: 740px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
 .expertise-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 12%;
   border-radius: 20px;
 }
+
+/* The callout used to sit on the top of the portrait and cover her face. */
+.expertise-layout {
+  top: auto;
+  bottom: 0;
+  align-items: flex-end;
+  z-index: 2;
+}
+
+.expertise-img .expertise-spacer { display: none; }
+
+.expertise-img .card-expertise-wrapper {
+  padding: 0 16px 16px 0;
+  background: transparent;
+}
+
+#a-propos .card.card-expertise {
+  width: min(300px, 88%);
+  background: var(--mcf-card) !important;
+  background-image: none !important;
+  color: var(--mcf-ink);
+  border: 1px solid var(--mcf-line);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px -28px rgba(26, 18, 22, .55);
+}
+
+#a-propos .card.card-expertise p,
+#a-propos .card.card-expertise a {
+  color: var(--mcf-ink);
+  -webkit-text-fill-color: currentColor;
+}
+
+#a-propos .expertise-link a { color: var(--mcf-accent); }
 
 p,
 .rm-lede,
@@ -637,9 +684,16 @@ p,
 }
 
 .mcf-deep .btn-accent .btn-title span,
-.rm-method .btn-accent .btn-title span {
+.rm-method .btn-accent .btn-title span,
+.section.mcf-deep .rm-cta.keep-dark .btn-accent .btn-title span {
   color: var(--mcf-deep) !important;
   -webkit-text-fill-color: var(--mcf-deep) !important;
+}
+
+.rm-method .rm-tl-step,
+.mcf-deep .rm-tl-step {
+  color: var(--mcf-on-deep);
+  -webkit-text-fill-color: currentColor;
 }
 
 .mcf-deep .btn-accent .icon-circle,
@@ -655,5 +709,235 @@ p,
   margin: 8px 0 0;
   font-size: 12px;
   line-height: 1.45;
+}
+
+/* -webkit-text-fill-color inherits as a used color. Text that only
+   resets `color` stayed white when a parent had been painted for a
+   dark field. Tie the fill to each element's own color. :where()
+   has no specificity, so buttons, dots and deep sections keep theirs. */
+body.lightmode :where(
+  h1, h2, h3, h4, h5, h6,
+  p, a, span, li, button, label, strong, em, blockquote, figcaption, summary
+) {
+  -webkit-text-fill-color: currentColor;
+}
+
+.rm-why,
+.rm-light,
+.rm-faq-light,
+.rm-bento-section,
+.section-partner,
+.mcf-trust,
+.rm-page-hero,
+.rm-about-hero,
+.rm-inner-hero,
+.rm-svc-hero {
+  color: var(--mcf-ink);
+  -webkit-text-fill-color: currentColor;
+}
+
+.sub-heading span {
+  color: var(--mcf-accent);
+  -webkit-text-fill-color: currentColor;
+}
+
+.mcf-deep .sub-heading span,
+.rm-method .sub-heading span,
+.guide-content .sub-heading span {
+  color: var(--mcf-on-deep-soft);
+}
+
+.rm-hero .sub-heading {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.rm-hero .sub-heading span {
+  color: var(--mcf-accent) !important;
+  -webkit-text-fill-color: var(--mcf-accent) !important;
+}
+
+a.btn-accent,
+button.btn-accent {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.rm-editorial img,
+.rm-about-hero-media img {
+  object-fit: cover;
+  object-position: center 14%;
+}
+
+.rm-editorial img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+}
+
+/* Disclaimer copy sits in its own card. It never rests on the photograph. */
+.rm-split {
+  align-items: stretch;
+}
+
+.rm-split-head {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: transparent;
+  z-index: 0;
+}
+
+.rm-split-head picture,
+.rm-split-head img {
+  display: block;
+  position: static !important;
+  inset: auto !important;
+  width: 100%;
+  height: auto !important;
+  max-height: none;
+  object-fit: cover;
+  object-position: center 42%;
+  border-radius: 18px;
+}
+
+.rm-split:has(.rm-split-head img) .rm-split-body {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  background: var(--mcf-card);
+  color: var(--mcf-ink);
+  border: 1px solid var(--mcf-line);
+  border-radius: 18px;
+  padding: 28px 28px 32px;
+}
+
+.rm-split:has(.rm-split-head img) .rm-split-body p,
+.rm-split:has(.rm-split-head img) .rm-split-body li,
+.rm-split:has(.rm-split-head img) .rm-split-body a {
+  color: var(--mcf-ink) !important;
+  -webkit-text-fill-color: currentColor !important;
+  background: transparent;
+}
+
+.rm-related-cards {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rm-related-cards a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--mcf-card);
+  border: 1px solid var(--mcf-line);
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--mcf-ink);
+}
+
+.rm-related-visual {
+  display: block;
+  height: 190px;
+  overflow: hidden;
+  background: var(--mcf-paper);
+}
+
+.rm-related-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.rm-related-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px 18px;
+  font-weight: 700;
+  color: var(--mcf-ink);
+  -webkit-text-fill-color: currentColor;
+}
+
+.rm-related-cards a:hover .rm-related-label { color: var(--mcf-accent); }
+
+@media (max-width: 767px) {
+  .rm-related-cards { grid-template-columns: 1fr; }
+  .rm-related-visual { height: 210px; }
+  .rm-split:has(.rm-split-head img) .rm-split-body { padding: 22px 18px 24px; }
+}
+
+/* The call-to-action is a cream field. A purple panel is not placed on the purple section. */
+.section.mcf-deep:has(.rm-cta) {
+  background: var(--mcf-paper) !important;
+  color: var(--mcf-ink) !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .newsletter-wrapper::before,
+.section.mcf-deep:has(.rm-cta) .newsletter-layout::before,
+.section.mcf-deep:has(.rm-cta) .newsletter-layout::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .spacer {
+  display: none !important;
+  background: none !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .title-heading,
+.section.mcf-deep:has(.rm-cta) .rm-dot,
+.section.mcf-deep:has(.rm-cta) p,
+.section.mcf-deep:has(.rm-cta) .rm-cta-contact a,
+.section.mcf-deep:has(.rm-cta) .rm-cta-contact span {
+  color: var(--mcf-ink) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .btn-accent {
+  background: var(--mcf-deep) !important;
+  border-color: var(--mcf-deep) !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .rm-cta.keep-dark .btn-accent .btn-title,
+.section.mcf-deep:has(.rm-cta) .rm-cta.keep-dark .btn-accent .btn-title span {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .btn-accent .icon-circle {
+  background: #fff !important;
+  color: var(--mcf-deep) !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .btn-accent .icon-circle i {
+  color: var(--mcf-deep) !important;
+}
+
+.mcf-deep .rm-dot,
+.rm-method .rm-dot,
+.section-footer .rm-dot {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .rm-dot {
+  color: var(--mcf-accent) !important;
+  -webkit-text-fill-color: var(--mcf-accent) !important;
+}
+
+.section-footer .site-logo {
+  filter: brightness(0) invert(1);
 }
 
