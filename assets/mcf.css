@@ -970,7 +970,8 @@ button.btn-accent {
 .rm-split-head img.mcf-pos-cles { object-position: 46% 30%; }
 
 .bento-visual img.mcf-pos-famille,
-.mcf-stock-pair img.mcf-pos-famille { object-position: center 40%; }
+.mcf-stock-pair img.mcf-pos-famille,
+.rm-why-visual img.mcf-pos-famille { object-position: center 40%; }
 
 .rm-why-visual img.mcf-pos-maison,
 .mcf-stock-pair img.mcf-pos-maison { object-position: center 46%; }

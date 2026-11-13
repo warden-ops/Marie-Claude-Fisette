@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://warden-ops.github.io/Marie-Claude-Fisette/sitemap.xml
+Sitemap: https://hypothequesmcf.ca/sitemap.xml
