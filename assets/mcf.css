@@ -95,17 +95,22 @@ body.lightmode .keep-dark,
 .mcf-hero-photo {
   margin: 0;
   order: 2;
+  position: relative;
+  min-height: 680px;
+  height: 100%;
   border-radius: 18px;
   overflow: hidden;
-  background: var(--mcf-line);
+  background: transparent;
 }
 
 .mcf-hero-photo img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: 620px;
+  height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 16%;
 }
 
 .rm-hero-shade { display: none; }
@@ -210,8 +215,7 @@ body.lightmode .keep-dark,
 .guide-content h2,
 .guide-content p,
 .guide-content .sub-heading span,
-.section-guide.keep-dark,
-.section-guide.keep-dark p {
+.guide-content a {
   color: var(--mcf-on-deep) !important;
   -webkit-text-fill-color: var(--mcf-on-deep) !important;
 }
@@ -271,16 +275,37 @@ body.lightmode .keep-dark,
 .rm-editorial:after { display: none; }
 .rm-editorial { opacity: 1; clip-path: none; background: transparent; }
 
-.navbar .rm-logo,
+.rm-logo { aspect-ratio: 1033 / 164; }
+
+.navbar .logo-container {
+  flex: 0 0 auto !important;
+  min-width: max-content;
+  margin-right: 8px !important;
+}
+
+.navbar .navbar-collapse {
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: center;
+}
+
+.navbar .rm-logo {
+  height: 72px;
+  width: auto !important;
+  max-width: none !important;
+  object-fit: contain;
+}
+
 .logo-container-footer .rm-logo {
-  height: 42px;
+  height: 48px;
   width: auto;
-  max-width: min(58vw, 280px);
+  max-width: 340px;
 }
 
 .sidebar-header .logo .rm-logo {
-  height: 36px;
-  max-width: 180px;
+  height: 58px;
+  width: auto;
+  max-width: none;
 }
 
 [data-anim] { opacity: 0; }
@@ -322,8 +347,9 @@ html.mcf-reduce .rm-editorial {
   object-fit: cover;
   display: block;
 }
-.rm-why-visual .mcf-fill { object-position: center 18%; }
-.bento-visual .mcf-fill { object-position: center 30%; }
+.rm-why-visual { height: 340px; }
+.rm-why-visual .mcf-fill { object-position: center 8%; }
+.bento-visual .mcf-fill { object-position: center 50%; }
 
 .mcf-bento .bento-copy h3 { color: var(--mcf-ink); }
 .mcf-bento .bento-copy p { color: var(--mcf-muted); }
@@ -347,13 +373,28 @@ html.mcf-reduce .rm-editorial {
   .mcf-bento { grid-template-columns: 1fr; grid-auto-rows: auto; }
   .mcf-bento .bento-tile { grid-column: auto !important; grid-row: auto !important; }
   .mcf-bento .bento-visual { height: 210px; flex: none; }
-  .navbar-wrapper { padding: 16px; }
-  .navbar { padding: 12px 14px; }
+  .navbar-wrapper { padding: 8px 6px; }
+  .navbar { padding: 6px 8px; }
+  .navbar .navbar-container { gap: 8px !important; }
+  .navbar .logo-container {
+    flex: 1 1 auto !important;
+    min-width: 0;
+    margin-right: 0 !important;
+  }
   .rm-nav-num { display: none; }
-  .navbar .rm-logo { max-width: 42vw; height: 34px; }
+  .navbar .nav-btn.rm-menu--b { padding: 0 10px; }
+  .navbar .rm-logo {
+    height: auto !important;
+    width: calc(100vw - 118px) !important;
+    max-width: calc(100vw - 118px) !important;
+    max-height: none;
+  }
   .rm-hero { grid-template-columns: 1fr; padding: 16px; }
-  .mcf-hero-photo { order: -1; }
-  .mcf-hero-photo img { height: 460px; }
+  .mcf-hero-photo { order: -1; min-height: 560px; height: 560px; }
+  .mcf-hero-photo img { object-position: center top; }
+  .expertise-img,
+  .expertise-img img { height: 580px; }
+  .rm-why-visual { height: 280px; }
 }
 
 @media (min-width: 1200px) {
@@ -527,13 +568,52 @@ summary:focus-visible {
   .mcf-network-logos img.mcf-logo-gfs { height: 58px; }
 }
 
+.expertise-img {
+  height: 740px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
 .expertise-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 12%;
   border-radius: 20px;
 }
+
+/* The callout used to sit on the top of the portrait and cover her face. */
+.expertise-layout {
+  top: auto;
+  bottom: 0;
+  align-items: flex-end;
+  z-index: 2;
+}
+
+.expertise-img .expertise-spacer { display: none; }
+
+.expertise-img .card-expertise-wrapper {
+  padding: 0 16px 16px 0;
+  background: transparent;
+}
+
+#a-propos .card.card-expertise {
+  width: min(300px, 88%);
+  background: var(--mcf-card) !important;
+  background-image: none !important;
+  color: var(--mcf-ink);
+  border: 1px solid var(--mcf-line);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px -28px rgba(26, 18, 22, .55);
+}
+
+#a-propos .card.card-expertise p,
+#a-propos .card.card-expertise a {
+  color: var(--mcf-ink);
+  -webkit-text-fill-color: currentColor;
+}
+
+#a-propos .expertise-link a { color: var(--mcf-accent); }
 
 p,
 .rm-lede,
@@ -637,9 +717,16 @@ p,
 }
 
 .mcf-deep .btn-accent .btn-title span,
-.rm-method .btn-accent .btn-title span {
+.rm-method .btn-accent .btn-title span,
+.section.mcf-deep .rm-cta.keep-dark .btn-accent .btn-title span {
   color: var(--mcf-deep) !important;
   -webkit-text-fill-color: var(--mcf-deep) !important;
+}
+
+.rm-method .rm-tl-step,
+.mcf-deep .rm-tl-step {
+  color: var(--mcf-on-deep);
+  -webkit-text-fill-color: currentColor;
 }
 
 .mcf-deep .btn-accent .icon-circle,
@@ -655,5 +742,399 @@ p,
   margin: 8px 0 0;
   font-size: 12px;
   line-height: 1.45;
+}
+
+/* -webkit-text-fill-color inherits as a used color. Text that only
+   resets `color` stayed white when a parent had been painted for a
+   dark field. Tie the fill to each element's own color. :where()
+   has no specificity, so buttons, dots and deep sections keep theirs. */
+body.lightmode :where(
+  h1, h2, h3, h4, h5, h6,
+  p, a, span, li, button, label, strong, em, blockquote, figcaption, summary
+) {
+  -webkit-text-fill-color: currentColor;
+}
+
+.rm-why,
+.rm-light,
+.rm-faq-light,
+.rm-bento-section,
+.section-partner,
+.mcf-trust,
+.rm-page-hero,
+.rm-about-hero,
+.rm-inner-hero,
+.rm-svc-hero {
+  color: var(--mcf-ink);
+  -webkit-text-fill-color: currentColor;
+}
+
+.sub-heading span {
+  color: var(--mcf-accent);
+  -webkit-text-fill-color: currentColor;
+}
+
+.mcf-deep .sub-heading span,
+.rm-method .sub-heading span,
+.guide-content .sub-heading span {
+  color: var(--mcf-on-deep-soft);
+}
+
+.rm-hero .sub-heading {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.rm-hero .sub-heading span {
+  color: var(--mcf-accent) !important;
+  -webkit-text-fill-color: var(--mcf-accent) !important;
+}
+
+a.btn-accent,
+button.btn-accent {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.rm-editorial img,
+.rm-about-hero-media img {
+  object-fit: cover;
+  object-position: center 14%;
+}
+
+.rm-editorial img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+}
+
+/* Disclaimer copy sits in its own card. It never rests on the photograph. */
+.rm-split {
+  align-items: stretch;
+}
+
+.rm-split-head {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: transparent;
+  z-index: 0;
+}
+
+.rm-split-head:not(:has(h2)):has(img) {
+  position: relative;
+  min-height: 460px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.rm-split-head picture,
+.rm-split-head img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.rm-split-head:not(:has(h2)) picture,
+.rm-split-head:not(:has(h2)) img {
+  position: absolute !important;
+  inset: 0 !important;
+  height: 100% !important;
+  max-height: none;
+  border-radius: 18px;
+}
+
+.rm-split:has(.rm-split-head img) .rm-split-body {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  background: var(--mcf-card);
+  color: var(--mcf-ink);
+  border: 1px solid var(--mcf-line);
+  border-radius: 18px;
+  padding: 28px 28px 32px;
+}
+
+.rm-split:has(.rm-split-head img) .rm-split-body p,
+.rm-split:has(.rm-split-head img) .rm-split-body li,
+.rm-split:has(.rm-split-head img) .rm-split-body a {
+  color: var(--mcf-ink) !important;
+  -webkit-text-fill-color: currentColor !important;
+  background: transparent;
+}
+
+.rm-related-cards {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rm-related-cards a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--mcf-card);
+  border: 1px solid var(--mcf-line);
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--mcf-ink);
+}
+
+.rm-related-visual {
+  display: block;
+  height: 240px;
+  overflow: hidden;
+  background: var(--mcf-paper);
+}
+
+.rm-related-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.mcf-stock-pair,
+.mcf-context-row {
+  display: grid;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.mcf-stock-pair { grid-template-columns: 1fr 1fr; }
+.mcf-context-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.mcf-stock-pair img,
+.mcf-context-row img,
+.mcf-notary img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.mcf-stock-pair img { height: 320px; }
+.mcf-context-row img { height: 280px; }
+
+.mcf-notary {
+  margin: 36px 0 0;
+  width: 100%;
+}
+
+.mcf-notary img {
+  height: 380px;
+  border-radius: 18px;
+}
+
+.bento-visual img.mcf-pos-cles,
+.rm-related-visual img.mcf-pos-cles,
+.rm-split-head img.mcf-pos-cles { object-position: 46% 30%; }
+
+.bento-visual img.mcf-pos-famille,
+.mcf-stock-pair img.mcf-pos-famille { object-position: center 40%; }
+
+.rm-why-visual img.mcf-pos-maison,
+.mcf-stock-pair img.mcf-pos-maison { object-position: center 46%; }
+
+.bento-visual img.mcf-pos-renouv,
+.rm-related-visual img.mcf-pos-renouv,
+.rm-split-head img.mcf-pos-renouv { object-position: center 24%; }
+
+.bento-visual img.mcf-pos-cuisine,
+.rm-related-visual img.mcf-pos-cuisine,
+.rm-split-head img.mcf-pos-cuisine { object-position: center 55%; }
+
+.bento-visual img.mcf-pos-budget,
+.rm-related-visual img.mcf-pos-budget,
+.rm-split-head img.mcf-pos-budget { object-position: center 22%; }
+
+.mcf-notary img.mcf-pos-signature { object-position: 40% 16%; }
+
+.rm-why-visual img.mcf-pos-plex,
+.mcf-context-row img.mcf-pos-plex { object-position: center 42%; }
+
+.mcf-context-row img.mcf-pos-condo { object-position: center 34%; }
+
+.rm-related-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px 18px;
+  font-weight: 700;
+  color: var(--mcf-ink);
+  -webkit-text-fill-color: currentColor;
+}
+
+.rm-related-cards a:hover .rm-related-label { color: var(--mcf-accent); }
+
+@media (max-width: 767px) {
+  .rm-related-cards { grid-template-columns: 1fr; }
+  .rm-related-visual { height: 230px; }
+  .rm-split:has(.rm-split-head img) .rm-split-body { padding: 22px 18px 24px; }
+  .rm-split-head:not(:has(h2)):has(img) { min-height: 320px; }
+  .mcf-stock-pair,
+  .mcf-context-row { grid-template-columns: 1fr; }
+  .mcf-stock-pair img,
+  .mcf-context-row img { height: 220px; }
+  .mcf-notary img { height: 280px; }
+}
+
+/* The call-to-action is a cream field. A purple panel is not placed on the purple section. */
+.section.mcf-deep:has(.rm-cta) {
+  background: var(--mcf-paper) !important;
+  color: var(--mcf-ink) !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .newsletter-wrapper::before,
+.section.mcf-deep:has(.rm-cta) .newsletter-layout::before,
+.section.mcf-deep:has(.rm-cta) .newsletter-layout::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .spacer {
+  display: none !important;
+  background: none !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .title-heading,
+.section.mcf-deep:has(.rm-cta) .rm-dot,
+.section.mcf-deep:has(.rm-cta) p,
+.section.mcf-deep:has(.rm-cta) .rm-cta-contact a,
+.section.mcf-deep:has(.rm-cta) .rm-cta-contact span {
+  color: var(--mcf-ink) !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .btn-accent {
+  background: #5B004D !important;
+  background-image: none !important;
+  border-color: #5B004D !important;
+  opacity: 1 !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .rm-cta.keep-dark .btn-accent .btn-title,
+.section.mcf-deep:has(.rm-cta) .rm-cta.keep-dark .btn-accent .btn-title span {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .btn-accent .icon-circle {
+  background: #fff !important;
+  color: #5B004D !important;
+  opacity: 1 !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .btn-accent .icon-circle i,
+.section.mcf-deep:has(.rm-cta) .btn-accent .icon-circle svg {
+  color: #5B004D !important;
+  stroke: #5B004D !important;
+}
+
+.mcf-deep .rm-dot,
+.rm-method .rm-dot,
+.section-footer .rm-dot {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.section.mcf-deep:has(.rm-cta) .rm-dot {
+  color: var(--mcf-accent) !important;
+  -webkit-text-fill-color: var(--mcf-accent) !important;
+}
+
+.section-footer .site-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* The booking block is always fully drawn. A fade must not leave it grey. */
+.rm-cta,
+.rm-cta [data-anim],
+.rm-cta [data-anim].animate__animated {
+  opacity: 1 !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.rm-cta .newsletter-layout,
+.rm-cta .gspace-5,
+.rm-cta .gspace-5 > [data-anim] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.rm-cta .gspace-5 > [data-anim]:last-child {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px 22px;
+}
+
+.rm-cta .title-heading,
+.rm-cta .title-heading .rm-dot {
+  color: #1A1015 !important;
+  -webkit-text-fill-color: #1A1015 !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  opacity: 1 !important;
+  text-align: center;
+}
+
+.rm-cta p,
+.rm-cta .rm-cta-contact,
+.rm-cta .rm-cta-contact a,
+.rm-cta .rm-cta-contact span {
+  color: #1A1216 !important;
+  -webkit-text-fill-color: #1A1216 !important;
+  opacity: 1 !important;
+  text-align: center;
+}
+
+.rm-cta .btn-accent {
+  background: #5B004D !important;
+  background-image: none !important;
+  border: 2px solid #5B004D !important;
+  opacity: 1 !important;
+}
+
+.rm-cta .btn-accent .btn-title,
+.rm-cta .btn-accent .btn-title span,
+.rm-cta .btn-accent {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.rm-cta .btn-accent .icon-circle {
+  background: #fff !important;
+  color: #5B004D !important;
+  opacity: 1 !important;
+}
+
+.rm-cta .btn-accent .icon-circle i,
+.rm-cta .btn-accent .icon-circle svg {
+  color: #5B004D !important;
+  stroke: #5B004D !important;
+}
+
+.bento-grid.is-in .bento-tile,
+.rm-why-grid.is-in .rm-why-card,
+.rm-timeline.is-in .rm-tl-step,
+[data-anim].is-shown {
+  opacity: 1 !important;
+  transform: none !important;
+  transition-delay: 0s !important;
 }
 
