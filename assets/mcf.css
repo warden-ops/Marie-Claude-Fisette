@@ -110,7 +110,23 @@ body.lightmode .keep-dark,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 16%;
+  object-position: center 36%;
+}
+
+/* Header and hero copy are visible on first paint. A fade must not leave a blank cream band. */
+.navbar,
+.navbar-wrapper,
+.rm-hero,
+.rm-hero .animate__animated,
+.rm-hero .sub-heading,
+.rm-hero .rm-hero-title,
+.rm-hero .banner-content,
+.rm-hero .banner-video-content,
+.rm-hero .banner-heading {
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: none !important;
+  transform: none !important;
 }
 
 .rm-hero-shade { display: none; }
@@ -422,7 +438,7 @@ html.mcf-reduce .rm-editorial {
   }
   .rm-hero { grid-template-columns: 1fr; padding: 16px; }
   .mcf-hero-photo { order: -1; min-height: 560px; height: 560px; }
-  .mcf-hero-photo img { object-position: center top; }
+  .mcf-hero-photo img { object-position: center 32%; }
   .expertise-img,
   .expertise-img img { height: 580px; }
   .rm-why-visual { height: 280px; }
