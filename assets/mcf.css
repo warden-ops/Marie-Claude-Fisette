@@ -906,8 +906,10 @@ button.btn-accent {
 }
 
 .section.mcf-deep:has(.rm-cta) .btn-accent {
-  background: var(--mcf-deep) !important;
-  border-color: var(--mcf-deep) !important;
+  background: #5B004D !important;
+  background-image: none !important;
+  border-color: #5B004D !important;
+  opacity: 1 !important;
 }
 
 .section.mcf-deep:has(.rm-cta) .rm-cta.keep-dark .btn-accent .btn-title,
@@ -918,11 +920,14 @@ button.btn-accent {
 
 .section.mcf-deep:has(.rm-cta) .btn-accent .icon-circle {
   background: #fff !important;
-  color: var(--mcf-deep) !important;
+  color: #5B004D !important;
+  opacity: 1 !important;
 }
 
-.section.mcf-deep:has(.rm-cta) .btn-accent .icon-circle i {
-  color: var(--mcf-deep) !important;
+.section.mcf-deep:has(.rm-cta) .btn-accent .icon-circle i,
+.section.mcf-deep:has(.rm-cta) .btn-accent .icon-circle svg {
+  color: #5B004D !important;
+  stroke: #5B004D !important;
 }
 
 .mcf-deep .rm-dot,
@@ -939,5 +944,86 @@ button.btn-accent {
 
 .section-footer .site-logo {
   filter: brightness(0) invert(1);
+}
+
+/* The booking block is always fully drawn. A fade must not leave it grey. */
+.rm-cta,
+.rm-cta [data-anim],
+.rm-cta [data-anim].animate__animated {
+  opacity: 1 !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.rm-cta .newsletter-layout,
+.rm-cta .gspace-5,
+.rm-cta .gspace-5 > [data-anim] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.rm-cta .gspace-5 > [data-anim]:last-child {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px 22px;
+}
+
+.rm-cta .title-heading,
+.rm-cta .title-heading .rm-dot {
+  color: #1A1015 !important;
+  -webkit-text-fill-color: #1A1015 !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  opacity: 1 !important;
+  text-align: center;
+}
+
+.rm-cta p,
+.rm-cta .rm-cta-contact,
+.rm-cta .rm-cta-contact a,
+.rm-cta .rm-cta-contact span {
+  color: #1A1216 !important;
+  -webkit-text-fill-color: #1A1216 !important;
+  opacity: 1 !important;
+  text-align: center;
+}
+
+.rm-cta .btn-accent {
+  background: #5B004D !important;
+  background-image: none !important;
+  border: 2px solid #5B004D !important;
+  opacity: 1 !important;
+}
+
+.rm-cta .btn-accent .btn-title,
+.rm-cta .btn-accent .btn-title span,
+.rm-cta .btn-accent {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.rm-cta .btn-accent .icon-circle {
+  background: #fff !important;
+  color: #5B004D !important;
+  opacity: 1 !important;
+}
+
+.rm-cta .btn-accent .icon-circle i,
+.rm-cta .btn-accent .icon-circle svg {
+  color: #5B004D !important;
+  stroke: #5B004D !important;
+}
+
+.bento-grid.is-in .bento-tile,
+.rm-why-grid.is-in .rm-why-card,
+.rm-timeline.is-in .rm-tl-step,
+[data-anim].is-shown {
+  opacity: 1 !important;
+  transform: none !important;
+  transition-delay: 0s !important;
 }
 

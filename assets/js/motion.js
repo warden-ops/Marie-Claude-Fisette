@@ -2,11 +2,23 @@
   var reduce = document.documentElement.classList.contains("mcf-reduce") ||
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  function settle(el) {
+    el.style.opacity = "1";
+    el.style.transform = "none";
+    el.classList.add("is-shown");
+  }
+
   function reveal(el) {
+    if (el.closest(".rm-cta")) {
+      settle(el);
+      return;
+    }
     var name = el.getAttribute("data-anim") || "fadeInUp";
-    var delay = el.getAttribute("data-delay") || "0";
+    var delay = parseInt(el.getAttribute("data-delay") || "0", 10) || 0;
     el.classList.add("animate__animated", "animate__" + name);
     el.style.animationDelay = delay + "ms";
+    el.addEventListener("animationend", function () { settle(el); }, { once: true });
+    window.setTimeout(function () { settle(el); }, delay + 1100);
   }
 
   var anims = document.querySelectorAll("[data-anim]");
@@ -35,6 +47,9 @@
       });
     }, { threshold: 0.18 });
     groups.forEach(function (el) { gio.observe(el); });
+    window.setTimeout(function () {
+      groups.forEach(function (el) { el.classList.add("is-in"); });
+    }, 1600);
   }
 
   if (!reduce) {
