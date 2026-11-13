@@ -4,10 +4,6 @@
   var success = document.getElementById("contact-success");
   if (!form || !status || !success) return;
 
-  if (window.jQuery && jQuery.fn.niceSelect) {
-    jQuery("#contact-form select.js-native-select").niceSelect("destroy");
-  }
-
   var labels = {
     achat: "Achat d’une propriété",
     renouvellement: "Renouvellement",
@@ -33,8 +29,12 @@
 
   function markInvalid(name, invalid) {
     var field = form.querySelector('[name="' + name + '"]');
-    var wrap = field && field.closest(".contact-field, .contact-consent");
+    var wrap = field && field.closest(".rm-field, .mcf-consent");
     if (wrap) wrap.classList.toggle("is-invalid", invalid);
+    if (field && field.type !== "checkbox" && field.type !== "radio") {
+      if (invalid) field.setAttribute("aria-invalid", "true");
+      else field.removeAttribute("aria-invalid");
+    }
   }
 
   function digits(value) {
@@ -76,25 +76,27 @@
     if (missing.length) {
       missing.forEach(function (name) { markInvalid(name, true); });
       showStatus("Certains champs sont à corriger.", false);
+      var first = form.querySelector(".is-invalid input, .is-invalid select, .is-invalid textarea");
+      if (first) first.focus();
       return;
     }
 
-    var button = form.querySelector(".contact-submit");
+    var button = form.querySelector("[type=submit]");
     button.disabled = true;
-    button.textContent = "Envoi en cours…";
+    button.querySelector(".btn-title span").textContent = "Envoi en cours…";
 
     var payload = {
-      Prénom: firstName,
-      Nom: lastName,
-      Courriel: email,
-      Téléphone: phone,
-      Projet: labels[projectType] || projectType,
-      Échéance: labels[timeline] || timeline,
+      "Prénom": firstName,
+      "Nom": lastName,
+      "Courriel": email,
+      "Téléphone": phone,
+      "Projet": labels[projectType] || projectType,
+      "Échéance": labels[timeline] || timeline,
       "Moyen de contact": labels[contactMethod] || contactMethod,
-      Message: message,
-      _subject: "Demande d’appel · Marie-Claude Fisette",
-      _template: "table",
-      _captcha: "false"
+      "Message": message,
+      "_subject": "Demande d’appel · Marie-Claude Fisette",
+      "_template": "table",
+      "_captcha": "false"
     };
 
     fetch("https://formsubmit.co/ajax/mc.fisette@groupeih.ca", {
@@ -112,6 +114,7 @@
       .then(function () {
         form.hidden = true;
         success.hidden = false;
+        success.focus();
       })
       .catch(function () {
         var subject = encodeURIComponent("Demande d’appel · Marie-Claude Fisette");
@@ -133,7 +136,8 @@
       })
       .finally(function () {
         button.disabled = false;
-        button.textContent = "Envoyer ma demande";
+        var label = button.querySelector(".btn-title span");
+        if (label) label.textContent = "Envoyer ma demande";
       });
   });
 })();
