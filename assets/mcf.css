@@ -4,13 +4,16 @@
 
 :root {
   --mcf-accent: #5B004D;
-  --mcf-accent-deep: #3F0035;
-  --mcf-accent-soft: #F6E4F1;
-  --mcf-ink: #3A2E34;
-  --mcf-muted: #6B5C64;
-  --mcf-paper: #FBF6F2;
+  --mcf-accent-deep: #2A0824;
+  --mcf-accent-soft: #F4E4EF;
+  --mcf-ink: #1A1216;
+  --mcf-muted: #3E3338;
+  --mcf-paper: #F7F4F1;
   --mcf-card: #FFFFFF;
-  --mcf-line: #EADFD8;
+  --mcf-line: #D5C8CE;
+  --mcf-deep: #2A0824;
+  --mcf-on-deep: #FFFFFF;
+  --mcf-on-deep-soft: #F6EAF2;
 }
 
 :root,
@@ -78,19 +81,44 @@ body.lightmode .keep-dark,
 }
 
 .rm-hero {
-  background-color: var(--mcf-paper);
-  background-image:
-    linear-gradient(90deg, var(--mcf-paper) 0%, var(--mcf-paper) 40%, rgba(251, 246, 242, .2) 58%, rgba(251, 246, 242, 0) 70%),
-    url("img/stock/maisons-montreal-1400.webp");
-  background-size: cover;
-  background-position: center right;
-  min-height: min(72vh, 720px);
-  padding: 56px 28px 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(260px, .9fr);
+  align-items: stretch;
+  gap: 28px;
+  background: var(--mcf-paper);
+  background-image: none;
+  min-height: 0;
+  padding: 28px;
   border-color: var(--mcf-line);
 }
 
-.rm-hero picture,
+.mcf-hero-photo {
+  margin: 0;
+  order: 2;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--mcf-line);
+}
+
+.mcf-hero-photo img {
+  display: block;
+  width: 100%;
+  height: 620px;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
 .rm-hero-shade { display: none; }
+
+.rm-hero .hero-container {
+  position: relative;
+  z-index: 1;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
 
 .rm-hero .hero-container {
   position: relative;
@@ -161,20 +189,34 @@ body.lightmode .keep-dark,
 .rm-lede { color: var(--mcf-muted); }
 
 .guide-banner {
-  background-image: linear-gradient(100deg, rgba(251, 246, 242, .94), rgba(246, 228, 241, .78)), url("img/stock/demenagement-1400.webp") !important;
+  background-image: url("img/stock/plateau-1400.webp") !important;
+  background-size: cover;
+  background-position: center;
   background-attachment: scroll;
-  padding: 72px 28px;
-  border-color: var(--mcf-line);
+  padding: 36px;
+  border: 0;
+  min-height: 460px;
+  justify-content: center;
 }
 
-.guide-content,
+.guide-content {
+  background: var(--mcf-deep);
+  color: var(--mcf-on-deep);
+  max-width: 460px;
+  padding: 28px 28px 32px;
+  border-radius: 16px;
+}
+
 .guide-content h2,
 .guide-content p,
+.guide-content .sub-heading span,
 .section-guide.keep-dark,
 .section-guide.keep-dark p {
-  color: var(--mcf-ink);
-  -webkit-text-fill-color: var(--mcf-ink);
+  color: var(--mcf-on-deep) !important;
+  -webkit-text-fill-color: var(--mcf-on-deep) !important;
 }
+
+.guide-content .rm-text-link { color: var(--mcf-on-deep-soft) !important; }
 
 .rm-cta.keep-dark .newsletter-layout {
   background: var(--mcf-accent-soft) !important;
@@ -191,8 +233,8 @@ body.lightmode .keep-dark,
 }
 
 .btn-accent {
-  background: var(--mcf-accent) !important;
-  border-color: var(--mcf-accent) !important;
+  background: var(--mcf-deep) !important;
+  border: 2px solid var(--mcf-deep) !important;
   box-shadow: none;
 }
 
@@ -226,9 +268,8 @@ body.lightmode .keep-dark,
   border-radius: 20px;
 }
 
-.rm-editorial:after {
-  background: linear-gradient(180deg, transparent 72%, rgba(58, 46, 52, .16));
-}
+.rm-editorial:after { display: none; }
+.rm-editorial { opacity: 1; clip-path: none; background: transparent; }
 
 .navbar .rm-logo,
 .logo-container-footer .rm-logo {
@@ -310,12 +351,9 @@ html.mcf-reduce .rm-editorial {
   .navbar { padding: 12px 14px; }
   .rm-nav-num { display: none; }
   .navbar .rm-logo { max-width: 42vw; height: 34px; }
-  .rm-hero {
-    background-image:
-      linear-gradient(180deg, rgba(251, 246, 242, .92), rgba(251, 246, 242, .84)),
-      url("img/stock/maisons-montreal-800.webp");
-    min-height: 0;
-  }
+  .rm-hero { grid-template-columns: 1fr; padding: 16px; }
+  .mcf-hero-photo { order: -1; }
+  .mcf-hero-photo img { height: 460px; }
 }
 
 @media (min-width: 1200px) {
@@ -496,3 +534,126 @@ summary:focus-visible {
   object-position: center 15%;
   border-radius: 20px;
 }
+
+p,
+.rm-lede,
+.bento-copy p,
+.rm-why-copy p,
+.card p,
+.accordion-body p,
+.footer-list a,
+.contact-list a {
+  color: var(--mcf-ink);
+}
+
+.nav-link,
+.dropdown-item,
+.rm-nav-num {
+  color: var(--mcf-ink) !important;
+  font-weight: 650;
+}
+
+.nav-link.active { color: var(--mcf-accent) !important; }
+
+.mcf-trust-list {
+  gap: 14px;
+}
+
+.mcf-trust-list li {
+  border: 1px solid var(--mcf-ink);
+  border-top: 4px solid var(--mcf-accent);
+  box-shadow: none;
+}
+
+.mcf-trust-list strong {
+  font-size: 18px;
+  color: var(--mcf-ink);
+}
+
+.mcf-deep,
+.rm-method,
+.section.mcf-deep {
+  background: var(--mcf-deep) !important;
+  color: var(--mcf-on-deep);
+}
+
+.mcf-deep h2,
+.mcf-deep h3,
+.mcf-deep p,
+.mcf-deep .title-heading,
+.mcf-deep .sub-heading span,
+.mcf-deep .rm-cta-contact a,
+.mcf-deep .rm-cta-contact span,
+.rm-method h2,
+.rm-method h3,
+.rm-method p,
+.rm-method .title-heading,
+.rm-method .sub-heading span {
+  color: var(--mcf-on-deep) !important;
+  -webkit-text-fill-color: var(--mcf-on-deep) !important;
+}
+
+.rm-method .rm-tl-line { background: rgba(255, 255, 255, .35); }
+.rm-method .rm-tl-dot { border-color: #fff; background: var(--mcf-deep); }
+.rm-method .rm-tl-num { color: var(--mcf-on-deep-soft); }
+
+.rm-cta.keep-dark .newsletter-layout,
+.mcf-deep .newsletter-layout {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.section-footer .bg-footer {
+  background: var(--mcf-deep) !important;
+  background-image: none !important;
+  color: var(--mcf-on-deep);
+}
+
+.section-footer .bg-footer p,
+.section-footer .bg-footer a,
+.section-footer .bg-footer li,
+.section-footer .mcf-legal p,
+.section-footer .copyright {
+  color: var(--mcf-on-deep-soft);
+}
+
+.section-footer .bg-footer h2,
+.section-footer .rm-foot-tag {
+  color: var(--mcf-on-deep) !important;
+  -webkit-text-fill-color: var(--mcf-on-deep) !important;
+}
+
+.section-footer .mcf-network {
+  background: #fff;
+}
+
+.section-footer .mcf-network p { color: var(--mcf-ink); }
+
+.mcf-deep .btn-accent,
+.rm-method .btn-accent {
+  background: #fff !important;
+  border-color: #fff !important;
+}
+
+.mcf-deep .btn-accent .btn-title span,
+.rm-method .btn-accent .btn-title span {
+  color: var(--mcf-deep) !important;
+  -webkit-text-fill-color: var(--mcf-deep) !important;
+}
+
+.mcf-deep .btn-accent .icon-circle,
+.rm-method .btn-accent .icon-circle {
+  background: var(--mcf-accent) !important;
+  color: #fff !important;
+}
+
+.mcf-deep .btn-accent .icon-circle i,
+.rm-method .btn-accent .icon-circle i { color: #fff !important; }
+
+.mcf-credits {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
