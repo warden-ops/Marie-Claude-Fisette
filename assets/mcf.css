@@ -44,7 +44,7 @@ body.lightmode {
   color: var(--mcf-ink);
 }
 
-html { scroll-padding-top: 24px; }
+html { scroll-padding-top: 120px; }
 
 /* Light, warm surfaces where the template uses a near-black field. */
 body.lightmode .keep-dark,
@@ -83,24 +83,41 @@ body.lightmode .keep-dark,
 .section-banner {
   padding: 0 !important;
   margin: 0;
+  background: transparent;
+}
+
+.section-banner:has(.rm-hero) {
   background: #140c10;
 }
 
 .navbar-wrapper {
-  background: var(--mcf-paper);
-  position: relative;
-  z-index: 40;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: auto !important;
+  background: transparent;
+  padding: 16px 20px 0;
+  pointer-events: none;
 }
 
 .navbar {
+  pointer-events: auto;
   background: #fff;
+  box-shadow: 0 12px 32px rgba(20, 8, 16, .18);
+}
+
+/* Inner pages keep their titles clear of the floating pill. The home photo starts at the top. */
+main:not(:has(.rm-hero)) {
+  padding-top: 128px;
 }
 
 .rm-hero {
   display: block;
   position: relative;
   isolation: isolate;
-  min-height: 92vh;
+  min-height: 100vh;
   padding: 0 !important;
   margin: 0;
   overflow: hidden;
@@ -164,9 +181,9 @@ body.lightmode .keep-dark,
   z-index: 2;
   width: min(1180px, 100%);
   max-width: 1180px;
-  min-height: 92vh;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 72px 56px;
+  padding: 148px 56px 72px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -351,16 +368,70 @@ body.lightmode .keep-dark,
 
 .rm-logo { aspect-ratio: 1033 / 164; }
 
+.navbar .navbar-container {
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0;
+}
+
 .navbar .logo-container {
   flex: 0 0 auto !important;
   min-width: max-content;
-  margin-right: 8px !important;
+  margin-right: 0 !important;
 }
 
 .navbar .navbar-collapse {
   flex: 1 1 auto;
   min-width: 0;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-left: 40px !important;
+}
+
+.navbar .navbar-nav {
+  flex-wrap: nowrap;
+  gap: 0 2px;
+  margin-left: 0 !important;
+}
+
+.navbar .nav-link,
+.navbar .rm-nav-btn {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  white-space: nowrap;
+}
+
+.navbar .navbar-action-container {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  margin-left: 16px;
+}
+
+/* Below 1280 the wordmark, a 40px gap, the links and the phone cannot share one row. */
+@media (max-width: 1279px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: none !important;
+  }
+  .navbar .logo-container {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+    margin-right: 0 !important;
+  }
+  .navbar .nav-btn.rm-menu {
+    display: inline-flex !important;
+    margin-left: auto !important;
+    flex: 0 0 auto !important;
+  }
+  .navbar .navbar-action-container {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1399px) {
+  .navbar .nav-link,
+  .navbar .rm-nav-btn {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
 }
 
 .navbar .rm-logo {
@@ -465,8 +536,8 @@ html.mcf-reduce .rm-editorial {
     grid-row: auto;
   }
   .rm-hero,
-  .rm-hero .hero-container { min-height: 88vh; }
-  .rm-hero .hero-container { padding: 56px 32px; }
+  .rm-hero .hero-container { min-height: 100vh; }
+  .rm-hero .hero-container { padding: 136px 32px 56px; }
   .rm-hero .banner-content,
   .rm-hero-aside,
   .banner-video-content { width: 100%; }
@@ -480,30 +551,36 @@ html.mcf-reduce .rm-editorial {
     flex: none;
     aspect-ratio: 3 / 2;
   }
-  .navbar-wrapper { padding: 8px 6px; }
+  .navbar-wrapper { padding: 10px 10px 0; background: transparent; }
+  main:not(:has(.rm-hero)) { padding-top: 96px; }
   .navbar { padding: 6px 8px; }
   .navbar .navbar-container { gap: 8px !important; }
   .navbar .logo-container {
     flex: 1 1 auto !important;
-    min-width: 0;
+    min-width: 0 !important;
+    max-width: calc(100% - 140px) !important;
     margin-right: 0 !important;
   }
   .rm-nav-num { display: none; }
-  .navbar .nav-btn.rm-menu--b { padding: 0 10px; }
+  .navbar .nav-btn.rm-menu--b {
+    padding: 0 10px;
+    margin-left: 40px !important;
+    flex: 0 0 auto !important;
+  }
   .navbar .rm-logo {
     height: auto !important;
-    width: calc(100vw - 118px) !important;
-    max-width: calc(100vw - 118px) !important;
-    max-height: none;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 52px;
   }
   .rm-hero,
   .rm-hero .hero-container {
-    min-height: calc(100svh - 108px);
+    min-height: 100svh;
     height: auto;
   }
   .rm-hero .hero-container {
     align-items: flex-end;
-    padding: 20px 20px 24px;
+    padding: 108px 20px 28px;
   }
   .mcf-hero-photo img { object-position: 58% 38%; }
   .rm-hero-shade {
