@@ -823,16 +823,27 @@ button.btn-accent {
   z-index: 0;
 }
 
+.rm-split-head:not(:has(h2)):has(img) {
+  position: relative;
+  min-height: 460px;
+  height: 100%;
+  overflow: hidden;
+}
+
 .rm-split-head picture,
 .rm-split-head img {
   display: block;
-  position: static !important;
-  inset: auto !important;
   width: 100%;
-  height: auto !important;
-  max-height: none;
   object-fit: cover;
-  object-position: center 42%;
+  border-radius: 18px;
+}
+
+.rm-split-head:not(:has(h2)) picture,
+.rm-split-head:not(:has(h2)) img {
+  position: absolute !important;
+  inset: 0 !important;
+  height: 100% !important;
+  max-height: none;
   border-radius: 18px;
 }
 
@@ -878,7 +889,7 @@ button.btn-accent {
 
 .rm-related-visual {
   display: block;
-  height: 190px;
+  height: 240px;
   overflow: hidden;
   background: var(--mcf-paper);
 }
@@ -888,8 +899,69 @@ button.btn-accent {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 30%;
 }
+
+.mcf-stock-pair,
+.mcf-context-row {
+  display: grid;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.mcf-stock-pair { grid-template-columns: 1fr 1fr; }
+.mcf-context-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.mcf-stock-pair img,
+.mcf-context-row img,
+.mcf-notary img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.mcf-stock-pair img { height: 320px; }
+.mcf-context-row img { height: 280px; }
+
+.mcf-notary {
+  margin: 36px 0 0;
+  width: 100%;
+}
+
+.mcf-notary img {
+  height: 380px;
+  border-radius: 18px;
+}
+
+.bento-visual img.mcf-pos-cles,
+.rm-related-visual img.mcf-pos-cles,
+.rm-split-head img.mcf-pos-cles { object-position: 46% 30%; }
+
+.bento-visual img.mcf-pos-famille,
+.mcf-stock-pair img.mcf-pos-famille { object-position: center 40%; }
+
+.rm-why-visual img.mcf-pos-maison,
+.mcf-stock-pair img.mcf-pos-maison { object-position: center 46%; }
+
+.bento-visual img.mcf-pos-renouv,
+.rm-related-visual img.mcf-pos-renouv,
+.rm-split-head img.mcf-pos-renouv { object-position: center 24%; }
+
+.bento-visual img.mcf-pos-cuisine,
+.rm-related-visual img.mcf-pos-cuisine,
+.rm-split-head img.mcf-pos-cuisine { object-position: center 55%; }
+
+.bento-visual img.mcf-pos-budget,
+.rm-related-visual img.mcf-pos-budget,
+.rm-split-head img.mcf-pos-budget { object-position: center 22%; }
+
+.mcf-notary img.mcf-pos-signature { object-position: 40% 16%; }
+
+.rm-why-visual img.mcf-pos-plex,
+.mcf-context-row img.mcf-pos-plex { object-position: center 42%; }
+
+.mcf-context-row img.mcf-pos-condo { object-position: center 34%; }
 
 .rm-related-label {
   display: flex;
@@ -906,8 +978,14 @@ button.btn-accent {
 
 @media (max-width: 767px) {
   .rm-related-cards { grid-template-columns: 1fr; }
-  .rm-related-visual { height: 210px; }
+  .rm-related-visual { height: 230px; }
   .rm-split:has(.rm-split-head img) .rm-split-body { padding: 22px 18px 24px; }
+  .rm-split-head:not(:has(h2)):has(img) { min-height: 320px; }
+  .mcf-stock-pair,
+  .mcf-context-row { grid-template-columns: 1fr; }
+  .mcf-stock-pair img,
+  .mcf-context-row img { height: 220px; }
+  .mcf-notary img { height: 280px; }
 }
 
 /* The call-to-action is a cream field. A purple panel is not placed on the purple section. */
