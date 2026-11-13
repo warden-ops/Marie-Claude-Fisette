@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://alexandreroy-dev.github.io/Marie-Claude-Fisette/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://warden-ops.github.io/Marie-Claude-Fisette/</loc></url>
+  <url><loc>https://warden-ops.github.io/Marie-Claude-Fisette/a-propos/</loc></url>
+  <url><loc>https://warden-ops.github.io/Marie-Claude-Fisette/faq/</loc></url>
+  <url><loc>https://warden-ops.github.io/Marie-Claude-Fisette/contact/</loc></url>
+  <url><loc>https://warden-ops.github.io/Marie-Claude-Fisette/politique-de-confidentialite/</loc></url>
+  <url><loc>https://warden-ops.github.io/Marie-Claude-Fisette/achat/</loc></url>
+  <url><loc>https://warden-ops.github.io/Marie-Claude-Fisette/renouvellement/</loc></url>
+  <url><loc>https://warden-ops.github.io/Marie-Claude-Fisette/refinancement/</loc></url>
+  <url><loc>https://warden-ops.github.io/Marie-Claude-Fisette/capacite-emprunt/</loc></url>
 </urlset>

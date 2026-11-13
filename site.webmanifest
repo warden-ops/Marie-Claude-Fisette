@@ -1,0 +1,14 @@
+{
+  "name": "Marie-Claude Fisette",
+  "short_name": "MCF",
+  "description": "Courtage hypothécaire résidentiel partout au Québec.",
+  "lang": "fr-CA",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#FBF6F2",
+  "theme_color": "#5B004D",
+  "icons": [
+    { "src": "assets/brand/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "assets/brand/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
