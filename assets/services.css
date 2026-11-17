@@ -1,0 +1,148 @@
+/* Service pages (achat, renouvellement, refinancement, capacité d'emprunt).
+   Built on the home components in mcf.css. Loaded only by the four service pages. */
+
+/* Hero: full-bleed photo like the home page, a bit shorter. */
+.svc-hero.rm-hero,
+.svc-hero.rm-hero .hero-container { min-height: 88vh; }
+.svc-hero.rm-hero .hero-container { padding: 150px 56px 64px; align-items: flex-end; }
+.svc-hero-inner { max-width: 760px; display: flex; flex-direction: column; gap: 18px; }
+.svc-hero .svc-crumbs ol { margin: 0; }
+.svc-hero .svc-crumbs li,
+.svc-hero .svc-crumbs a,
+.svc-hero .svc-crumbs li + li:before { color: rgba(255, 255, 255, .86); }
+.svc-hero .svc-crumbs a:hover { color: #fff; border-color: #fff; }
+.svc-hero .sub-heading { align-self: flex-start; }
+.svc-hero .sub-heading span { color: #fff; }
+.svc-hero .svc-hero-title {
+  font-size: clamp(38px, 4.6vw, 66px);
+  line-height: 1.04;
+  text-transform: none;
+  letter-spacing: -.02em;
+  margin: 0;
+  color: #fff;
+}
+.svc-hero .svc-hero-title .rm-line { display: block; }
+.svc-hero .svc-hero-title strong { font-weight: 700; }
+.svc-hero-lede { margin: 0; max-width: 640px; font-size: 18px; line-height: 1.55; color: rgba(255, 255, 255, .94) !important; }
+.svc-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 6px; }
+.svc-hero-actions .rm-text-link { margin-top: 0; color: #fff !important; border-color: rgba(255, 255, 255, .55); }
+.svc-chips { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.svc-chips li {
+  padding: 7px 14px; border-radius: 40px; font-size: 14px; font-weight: 500; color: #fff;
+  background: rgba(10, 6, 9, .42); border: 1px solid rgba(255, 255, 255, .22);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+
+/* Shared section heads */
+.svc-section { padding: 104px 20px; }
+.svc-head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+.svc-head .title-heading,
+.svc-faq .title-heading { text-align: left; }
+.svc-head--split { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 48px; }
+.svc-head--split > div { display: flex; flex-direction: column; gap: 14px; max-width: 620px; }
+.svc-intro { margin: 0; max-width: 560px; font-size: 17px; line-height: 1.6; color: var(--mcf-muted); }
+.svc-section h3 { font-family: var(--rm-display); font-size: 19px; font-weight: 600; line-height: 1.3; margin: 0; color: var(--mcf-ink); }
+.svc-section li p { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--mcf-muted); }
+.svc-section ul { list-style: none; margin: 0; padding: 0; }
+.svc-section figure { margin: 0; overflow: hidden; border-radius: 22px; background: #e9e2dd; }
+.svc-section figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Pour qui */
+.svc-aud-layout { display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: stretch; }
+.svc-aud-visual { min-height: 520px; }
+.svc-aud-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.svc-aud-card { background: var(--mcf-card); border: 1px solid var(--mcf-line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+.svc-aud-card h3 { position: relative; padding-left: 18px; }
+.svc-aud-card h3:before { content: ""; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border-radius: 50%; background: var(--mcf-accent); }
+
+/* Déroulement */
+.svc-method-note { margin: 40px 0 0; font-size: 15px; opacity: .9; }
+
+/* Avantages */
+.svc-benefits { background: var(--mcf-accent-soft); }
+.svc-ben-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.svc-ben-card { background: var(--mcf-card); border-radius: 20px; padding: 28px 24px; display: flex; flex-direction: column; gap: 12px; }
+.svc-ben-ico { width: 48px; height: 48px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--mcf-accent); color: #fff; font-size: 22px; margin-bottom: 6px; }
+
+/* Situations */
+.svc-scen-layout { display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: start; }
+.svc-scen-side .svc-head { margin-bottom: 28px; }
+.svc-scen-visual { height: 360px; }
+.svc-scen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.svc-scen-card { border-top: 2px solid var(--mcf-accent); background: var(--mcf-card); border-radius: 0 0 18px 18px; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+.svc-scen-num { font-family: var(--rm-display); font-weight: 700; font-size: 14px; color: var(--mcf-accent); letter-spacing: .04em; }
+
+/* Documents */
+.svc-docs { padding-top: 0; }
+.svc-docs-card { display: grid; grid-template-columns: 5fr 7fr; gap: 56px; background: var(--mcf-card); border: 1px solid var(--mcf-line); border-radius: 28px; padding: 48px; }
+.svc-docs-head { display: flex; flex-direction: column; gap: 14px; }
+.svc-docs-head .title-heading { text-align: left; }
+.svc-docs-visual { height: 240px; margin-top: 10px !important; }
+.svc-doc-list { display: grid; gap: 0; }
+.svc-doc-list li { display: flex; gap: 14px; align-items: flex-start; padding: 15px 0; border-bottom: 1px solid var(--mcf-line); font-size: 16px; line-height: 1.5; color: var(--mcf-ink); }
+.svc-doc-list li:first-child { padding-top: 0; }
+.svc-check { flex: 0 0 26px; width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--mcf-accent-soft); color: var(--mcf-accent); font-size: 15px; }
+.svc-docs-foot { margin: 20px 0 0; font-size: 14.5px; color: var(--mcf-muted); }
+
+/* FAQ intro link */
+.svc-faq .svc-intro { margin-top: 14px; }
+.svc-faq .svc-intro .rm-text-link { color: var(--mcf-accent) !important; border-color: var(--mcf-accent); margin-top: 0; }
+
+/* Mise en garde */
+.svc-disclaimer { padding: 0 20px 40px; }
+.svc-disclaimer p { margin: 0 auto; max-width: 900px; text-align: center; font-size: 14px; line-height: 1.6; color: var(--mcf-muted); }
+
+@media (max-width: 1199px) {
+  .svc-ben-grid { grid-template-columns: 1fr 1fr; }
+  .svc-aud-layout, .svc-scen-layout { gap: 40px; }
+}
+
+@media (max-width: 991px) {
+  .svc-hero.rm-hero .hero-container { padding: 140px 32px 56px; }
+  .svc-aud-layout, .svc-scen-layout, .svc-docs-card { grid-template-columns: 1fr; }
+  .svc-aud-visual { min-height: 0; height: 380px; }
+  .svc-head--split { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .svc-docs-card { padding: 36px; gap: 32px; }
+}
+
+@media (max-width: 767px) {
+  .svc-hero.rm-hero,
+  .svc-hero.rm-hero .hero-container { min-height: 100svh; }
+  .svc-hero.rm-hero .hero-container { padding: 112px 20px 32px; }
+  .svc-hero .svc-hero-title { font-size: clamp(32px, 8.6vw, 40px); }
+  .svc-hero-lede { font-size: 16px; line-height: 1.5; }
+  .svc-hero-actions { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .svc-chips li { font-size: 13px; padding: 6px 12px; }
+  .svc-section { padding: 72px 20px; }
+  .svc-docs { padding-top: 0; }
+  .svc-head .title-heading, .svc-faq .title-heading, .svc-docs-head .title-heading { font-size: clamp(28px, 7.6vw, 34px); }
+  .svc-aud-grid, .svc-scen-grid, .svc-ben-grid { grid-template-columns: 1fr; }
+  .svc-aud-visual { height: 300px; }
+  .svc-scen-visual { height: 240px; }
+  .svc-docs-card { padding: 26px 20px; border-radius: 22px; }
+  .svc-docs-visual { height: 200px; }
+}
+
+/* QA fixes */
+.svc-hero .svc-crumbs span { color: rgba(255, 255, 255, .86); }
+.svc-method-head { align-items: flex-end; }
+.svc-method-head .title-heading { text-align: left; }
+.svc-disclaimer-text { margin: 56px auto 0; max-width: 900px; text-align: center; font-size: 14px; line-height: 1.6; color: var(--mcf-muted); }
+@media (max-width: 767px) {
+  .svc-hero .rm-hero-shade {
+    background: linear-gradient(180deg, rgba(12, 6, 10, .66) 0%, rgba(12, 6, 10, .72) 45%, rgba(12, 6, 10, .9) 100%);
+  }
+  .svc-disclaimer-text { margin-top: 40px; text-align: left; }
+}
+.svc-nowrap { white-space: nowrap; }
+
+/* Pour qui, v2: heading row, then photo + cards. Keeps landscape photos close to their ratio. */
+.svc-audience .svc-aud-layout { grid-template-columns: 1.15fr 2fr; gap: 24px; }
+.svc-audience .svc-aud-visual { min-height: 400px; height: auto; }
+@media (max-width: 1199px) {
+  .svc-audience .svc-aud-layout { grid-template-columns: 1fr; }
+  .svc-audience .svc-aud-visual { min-height: 0; height: 380px; }
+}
+@media (max-width: 767px) {
+  .svc-audience .svc-aud-visual { height: 260px; }
+}
